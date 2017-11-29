@@ -21,4 +21,9 @@ public class Connexion {
 	    public String readmember() {
 	        return "readmember";
 	    }
+	  
+	  @GetMapping("/creatMember")
+	    public String creatMember() {
+	        return "creatMember";
+	    }
 }
