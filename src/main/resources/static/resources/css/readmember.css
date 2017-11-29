@@ -1,0 +1,50 @@
+body {
+	
+}
+
+.img-circle {
+	border: 1px solid blue;
+	height: 50px;
+	width: 50px;
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+
+#blueBorder {
+	border: 2px solid #7fdeff;
+	border-radius: 20px;
+	background: #907ad6;
+}
+
+h3 {
+	color: rgb(127, 222, 255);
+	text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.btn {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border: 2px solid #7fdeff;
+	background: #2c2a4a;
+	color: #fff;
+	border-radius: 20px;
+}
+#picto{
+	display: flex;
+	justify-content: center;
+}
+#avatar{
+	width: -webkit-fill-available;
+}
+.btn-default{
+	background: #2c2a4a;
+}
+ul{
+	display: flex;
+    flex-direction: column;
+}
