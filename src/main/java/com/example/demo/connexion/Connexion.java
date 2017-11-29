@@ -31,4 +31,9 @@ public class Connexion {
 	    public String template() {
 	        return "template";
 	    }
+	  
+	  @GetMapping("/modifyMember")
+	    public String modifyMember() {
+	        return "modifyMember";
+	    }
 }
