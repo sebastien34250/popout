@@ -62,10 +62,10 @@
 			</plugin>
 		</plugins>
 	</build>
-	<bean id="templateResolver"
+	<!-- <bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="templateMode" value="HTML5" />
-	</bean>
+	</bean> -->
 
 </project>
