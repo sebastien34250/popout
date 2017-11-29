@@ -26,4 +26,9 @@ public class Connexion {
 	    public String creatMember() {
 	        return "creatMember";
 	    }
+	  
+	  @GetMapping("/template")
+	    public String template() {
+	        return "template";
+	    }
 }
