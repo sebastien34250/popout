@@ -3,9 +3,10 @@ body {
 }
 
 .img-circle {
-	border: 1px solid blue;
+	border: 2px solid #7fdeff;
 	height: 50px;
 	width: 50px;
+	background-color: white;
 }
 
 .img-responsive {
@@ -19,6 +20,7 @@ body {
 	border: 2px solid #7fdeff;
 	border-radius: 20px;
 	background: #907ad6;
+	margin-bottom: 10px;
 }
 
 h3 {
@@ -38,13 +40,20 @@ h3 {
 	display: flex;
 	justify-content: center;
 }
-#avatar{
-	width: -webkit-fill-available;
-}
+
 .btn-default{
 	background: #2c2a4a;
 }
 ul{
 	display: flex;
     flex-direction: column;
+}
+#avatar{
+	width: -webkit-fill-available;
+	margin-bottom: 10px;
+}
+#picto{
+	display: flex;
+    justify-content: space-around;
+	margin-bottom: 10px;
 }
