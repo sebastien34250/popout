@@ -20,6 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -67,7 +68,7 @@ public class User {
 	private Integer id;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+	@JoinTable(name = "user_pictograms", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pictogram_id"))
 	private Set<Pictogram> userPicto;
 	
 	
@@ -76,9 +77,13 @@ public class User {
 	}
 
 
-	public void setUserPicto(Set<Pictogram> userPicto) {
-		this.userPicto = userPicto;
-	}
+	
+	protected Set<Pictogram> getPictogramInternal() {
+	        if (this.userPicto == null) {
+	            this.userPicto = new HashSet<>();
+	        }
+	        return this.userPicto;
+	    }
 
 
 	public String getFirstName() {
