@@ -66,19 +66,19 @@ public class User {
 	@Column(name = "user_id")
 	private Integer id;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
-	private Set<Pictogram> userPicto;
-	
-	
-	public Set<Pictogram> getUserPicto() {
-		return userPicto;
-	}
-
-
-	public void setUserPicto(Set<Pictogram> userPicto) {
-		this.userPicto = userPicto;
-	}
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+//	private Set<Pictogram> userPicto;
+//	
+//	
+//	public Set<Pictogram> getUserPicto() {
+//		return userPicto;
+//	}
+//
+//
+//	public void setUserPicto(Set<Pictogram> userPicto) {
+//		this.userPicto = userPicto;
+//	}
 
 
 	public String getFirstName() {

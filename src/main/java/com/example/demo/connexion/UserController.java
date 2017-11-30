@@ -18,7 +18,6 @@ public class UserController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/creatMember";
     private final UserRepository users;
 
-
     @Autowired
     public UserController(UserRepository UserService) {
         this.users = UserService;
@@ -49,10 +48,8 @@ public class UserController {
     
     @GetMapping("/readmember/{user_id}")
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {
-        ModelAndView mav = new ModelAndView("readmember/");
-        User user = this.users.findById(user_id);
-        System.out.println(user.getFirstName());
-        mav.addObject(user);
+        ModelAndView mav = new ModelAndView("user/readmember");
+        mav.addObject(this.users.findById(user_id));
         return mav;
     }
 
