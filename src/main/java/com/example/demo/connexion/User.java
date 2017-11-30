@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
@@ -20,6 +21,9 @@ import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import fr.afpa.popout.picto.Pictogram;
 
@@ -39,7 +43,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name = "user_password")
 	private String password;
 	
 	@Column(name = "city")
@@ -62,15 +66,17 @@ public class User {
 	@Column(name = "user_id")
 	private Integer id;
 	
-	private ArrayList<Pictogram> userPicto;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+	private Set<Pictogram> userPicto;
 	
 	
-	public ArrayList<Pictogram> getUserPicto() {
+	public Set<Pictogram> getUserPicto() {
 		return userPicto;
 	}
 
 
-	public void setUserPicto(ArrayList<Pictogram> userPicto) {
+	public void setUserPicto(Set<Pictogram> userPicto) {
 		this.userPicto = userPicto;
 	}
 

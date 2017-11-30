@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 	
-	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/creatMember";
+	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/creatMember";
     private final UserRepository users;
 
 
@@ -47,10 +47,12 @@ public class UserController {
     }
     
     
-    @GetMapping("/readmember/{ownerId}")
+    @GetMapping("/readmember/{user_id}")
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {
         ModelAndView mav = new ModelAndView("readmember/");
-        mav.addObject(this.users.findById(user_id));
+        User user = this.users.findById(user_id);
+        System.out.println(user.getFirstName());
+        mav.addObject(user);
         return mav;
     }
 
