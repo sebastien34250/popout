@@ -1,4 +1,4 @@
-package fr.afpa.popout.user;
+package com.example.demo.connexion;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

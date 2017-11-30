@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Connexion {
 
 	
-	 @GetMapping("/")
+	 /*@GetMapping("/")
 	    public String index() {
 	        return "index";
-	    }
+	    }*/
 	 
 	  @GetMapping("/connexion")
 	    public String connexion() {
 	        return "connexion";
 	    }
 	  
-	  @GetMapping("/readmember")
+	  /*@GetMapping("/readmember")
 	    public String readmember() {
 	        return "readmember";
 	    }
 	  
-	  @GetMapping("/creatMember")
+	 /* @GetMapping("/creatMember")
 	    public String creatMember() {
 	        return "creatMember";
-	    }
+	    }*/
 	  
 	  @GetMapping("/template")
 	    public String template() {

@@ -1,4 +1,4 @@
-package fr.afpa.popout.user;
+package com.example.demo.connexion;
 
 import java.util.Map;
 
@@ -24,6 +24,11 @@ public class UserController {
         this.users = UserService;
     }
     
+    @GetMapping("/")
+    public String index() {
+    	return "index";
+    }
+    
     @GetMapping("/creatMember")
     public String initCreationForm(Map<String, Object> model) {
         User user = new User();
@@ -40,6 +45,7 @@ public class UserController {
             return "redirect:/readmember/" + user.getId();
         }
     }
+    
     
     @GetMapping("/readmember/{ownerId}")
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {

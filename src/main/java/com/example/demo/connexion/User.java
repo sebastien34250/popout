@@ -1,4 +1,4 @@
-package fr.afpa.popout.user;
+package com.example.demo.connexion;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -18,12 +19,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import fr.afpa.popout.picto.Pictogram;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 
 public class User {
 	@Column(name = "firstname")
@@ -56,7 +57,8 @@ public class User {
 	@Column(name = "age")
 	private int age;
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Integer id;
 	
@@ -171,6 +173,10 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public boolean isNew() {
+        return this.id == null;
+    }
 	
 	 @Override
 	    public String toString() {
