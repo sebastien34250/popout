@@ -43,7 +43,7 @@ public class UserController {
     
     @GetMapping("/readmember/{ownerId}")
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {
-        ModelAndView mav = new ModelAndView("readmember/memberDetails");
+        ModelAndView mav = new ModelAndView("readmember/");
         mav.addObject(this.users.findById(user_id));
         return mav;
     }
