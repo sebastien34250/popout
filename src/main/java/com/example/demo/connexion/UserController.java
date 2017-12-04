@@ -1,8 +1,11 @@
 package com.example.demo.connexion;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +20,18 @@ public class UserController {
 	
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/creatMember";
     private final UserRepository users;
+    private final PictoRepository pictos;
+    private  String imgPath = "/resources/static/resources/img";
+    
 
 
     @Autowired
-    public UserController(UserRepository UserService) {
+    public UserController(UserRepository UserService, PictoRepository PictoService) {
         this.users = UserService;
+        this.pictos = PictoService;
     }
+    
+   
     
     @GetMapping("/")
     public String index() {
@@ -32,7 +41,9 @@ public class UserController {
     @GetMapping("/creatMember")
     public String initCreationForm(Map<String, Object> model) {
         User user = new User();
+        Iterable<Pictogram> pictos = this.pictos.findAll();
         model.put("user", user);
+        model.put("pictos", pictos);
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
     
