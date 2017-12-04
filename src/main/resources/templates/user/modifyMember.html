@@ -12,7 +12,7 @@
 <title>Creation Membre</title>
 <meta name="description" content="Creatio d'un nouveau membre"></meta>
 </head>
-<body>
+<body th:object="${user}">
 	<br></br>
 	<div class="p-1">
 		<div class="container">
@@ -21,8 +21,8 @@
 					<form class="form-inline" method="post"
 						action="https://formspree.io/">
 						<label class="form-control-label text-left">Pseudo :</label> <input
-							type="text" name="Pseudo" class="form-control ml-auto w-50"
-							placeholder="Pseudo"></input>
+							name="Pseudo" class="form-control ml-auto w-50"
+							th:field="*{pseudo}"></input>
 					</form>
 				</div>
 			</div>
@@ -35,7 +35,8 @@
 					<form class="form-inline" method="post"
 						action="https://formspree.io/">
 						<label class="form-control-label">Nom :</label> <input type="text"
-							name="Nom" class="form-control ml-auto w-50" placeholder="Nom"></input>
+							name="Nom" class="form-control ml-auto w-50" placeholder="Nom"
+							th:field="*{lastName}"></input>
 					</form>
 				</div>
 			</div>
@@ -49,7 +50,7 @@
 						action="https://formspree.io/">
 						<label class="form-control-label">Prenom :</label> <input
 							type="text" name="Prenom" class="form-control ml-auto w-50"
-							placeholder="Prenom"></input>
+							placeholder="Prenom" th:field="*{firstName}"></input>
 					</form>
 				</div>
 			</div>
@@ -63,7 +64,7 @@
 						action="https://formspree.io/">
 						<label class="form-control-label">Email :</label> <input
 							type="email" name="email" class="form-control ml-auto w-50"
-							placeholder="Email"></input>
+							placeholder="Email" th:field="*{email}"></input>
 					</form>
 				</div>
 			</div>
@@ -75,9 +76,10 @@
 				<div class="col-md-12">
 					<form class="form-inline" method="post"
 						action="https://formspree.io/">
-						<label class="form-control-label">Mot de passe :</label> <input
-							type="password" name="Password" class="form-control ml-auto w-50"
-							placeholder="Mot de passe"></input>
+						<label class="form-control-label">Ancien mot de passe :</label> <input
+							type="password" name="oldPassword"
+							class="form-control ml-auto w-50" placeholder="Ancien mot de passe"
+							th:field="*{password}"></input>
 					</form>
 				</div>
 			</div>
@@ -89,9 +91,23 @@
 				<div class="col-md-12">
 					<form class="form-inline" method="post"
 						action="https://formspree.io/">
-						<label class="form-control-label">Confirmation du mot de
-							passe :</label> <input type="password" name="ConfirmationPassword"
-							class="form-control ml-auto w-50" placeholder="Mot de passe"></input>
+						<label class="form-control-label">Nouveau mot de passe :</label> <input
+							type="password" name="newPassword"
+							class="form-control ml-auto w-50" placeholder="Nouveau mot de passe"></input>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="p-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<form class="form-inline" method="post"
+						action="https://formspree.io/">
+						<label class="form-control-label">Confirmation du nouveau
+							mot de passe :</label> <input type="password" name="ConfirmationPassword"
+							class="form-control ml-auto w-50" placeholder="Confirmation du nouveau mot de passe"></input>
 					</form>
 				</div>
 			</div>
@@ -105,7 +121,7 @@
 						action="https://formspree.io/">
 						<label class="form-control-label">Age :</label> <input
 							type="number" name="Age" class="form-control ml-auto w-50"
-							placeholder="Age"></input>
+							placeholder="Age" th:field="*{age}"></input>
 					</form>
 				</div>
 			</div>
@@ -117,9 +133,22 @@
 				<div class="col-md-12">
 					<form class="form-inline" method="post"
 						action="https://formspree.io/">
+						<label class="form-control-label">Avatar :</label> <input
+							type="file" id="exampleInputFile"
+							class="form-control ml-auto w-50"
+							style="background-color: rgba(0, 0, 0, 0); border: none;" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<form class="form-inline" method="post"
+						action="https://formspree.io/">
 						<label class="form-control-label">Ville :</label> <input
 							type="text" name="Ville" class="form-control ml-auto w-50"
-							placeholder="Ville"></input>
+							placeholder="Ville" th:field="*{city}"></input>
 					</form>
 				</div>
 			</div>
@@ -173,28 +202,39 @@
 			<div class="row">
 				<div class="col-md-12  margin-bio">
 					<fieldset class="FieldSetBio">
+						<legend class="legend">Description</legend>
+						<textarea class="biographie"
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"
+							th:field="*{bioLight}"></textarea>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12  margin-bio">
+					<fieldset class="FieldSetBio">
 						<legend class="legend">Biographie</legend>
 						<textarea class="biographie"
-							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"></textarea>
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"
+							th:field="*{bio}"></textarea>
 					</fieldset>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="p-0">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 text-center">
-          <div class="col-md-12">
-            <a class="btn btn-primary" href="">Valider</a>
-          </div>
-        </div>
-        <div class="col-md-4 text-right">
-          <a class="btn btn-danger" href="">Supprimer le compte</a>
-        </div>
-      </div>
-    </div>
-  </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4 text-center">
+					<div class="col-md-12">
+						<a class="btn btn-primary" href="">Valider</a>
+					</div>
+				</div>
+				<div class="col-md-4 text-right">
+					<a class="btn btn-danger" href="">Supprimer le compte</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
