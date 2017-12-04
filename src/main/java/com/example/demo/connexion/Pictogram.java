@@ -1,28 +1,34 @@
-package fr.afpa.popout.picto;
+package com.example.demo.connexion;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "pictogram")
+@Table(name = "pictograms")
 
 public class Pictogram {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pictogram_id")
 	private int id;
-	
+
 	@Column(name = "pictogram_name")
 	private String name;
 
-	public Pictogram(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
+	@Column(name = "pictograms_path")
+	private String path;
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	public int getId() {
@@ -40,7 +46,5 @@ public class Pictogram {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
 }
