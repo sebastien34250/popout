@@ -75,6 +75,12 @@ public class UserController {
         }
     }
     
+    @PostMapping("/deleteMember/{user_id}")
+    public String deleteUser(@PathVariable("user_id") int user_id) {
+    	this.users.delete(user_id);
+    	return "redirect:/connection";
+    }
+     
     
 
 }
