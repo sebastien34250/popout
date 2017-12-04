@@ -56,12 +56,23 @@ public class UserController {
         return mav;
     }
     
-    @GetMapping("/readmember/{user_id}/modifier")
+    @GetMapping("/modifyMember/{user_id}")
     public ModelAndView updateUser(@PathVariable("user_id") int user_id) {
         ModelAndView mav = new ModelAndView("user/modifyMember");
         User user = this.users.findById(user_id);
         mav.addObject(user);
         return mav;
+    }
+    
+    @PostMapping("/modifyMember/{user_id}")
+    public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
+        if (result.hasErrors()) {
+            return "/modifyMember/{user_id}";
+        } else {
+        	user.setId(user_id);
+            this.users.save(user);
+            return "redirect:/readmember/{user_id}";
+        }
     }
     
     
