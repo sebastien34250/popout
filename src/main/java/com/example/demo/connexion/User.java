@@ -69,6 +69,10 @@ public class User {
 	@JoinTable(name = "user_pictograms", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pictogram_id"))
 	private Set<Pictogram> userPicto;
 	
+	public void setUserPicto(Set<Pictogram> userPicto) {
+		this.userPicto = userPicto;
+	}
+	
 	
 	public Set<Pictogram> getUserPicto() {
 		return userPicto;

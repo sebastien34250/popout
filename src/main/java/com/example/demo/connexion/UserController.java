@@ -49,8 +49,8 @@ public class UserController {
     
     @GetMapping("/readmember/{user_id}")
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {
-        ModelAndView mav = new ModelAndView("user/readmember");
-        User user = this.users.findById(user_id);
+        ModelAndView mav = new ModelAndView("user/readmember"); 
+        User user = this.users.findOne(user_id);
         System.out.println(user.getFirstName());
         mav.addObject(user);
         return mav;
@@ -59,7 +59,7 @@ public class UserController {
     @GetMapping("/modifyMember/{user_id}")
     public ModelAndView updateUser(@PathVariable("user_id") int user_id) {
         ModelAndView mav = new ModelAndView("user/modifyMember");
-        User user = this.users.findById(user_id);
+        User user = this.users.findOne(user_id);
         mav.addObject(user);
         return mav;
     }
