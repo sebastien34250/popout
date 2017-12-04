@@ -67,23 +67,23 @@ public class User {
 	@Column(name = "user_id")
 	private Integer id;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_pictograms", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pictogram_id"))
-	private Set<Pictogram> userPicto;
-	
-	
-	public Set<Pictogram> getUserPicto() {
-		return userPicto;
-	}
-
-
-	
-	protected Set<Pictogram> getPictogramInternal() {
-	        if (this.userPicto == null) {
-	            this.userPicto = new HashSet<>();
-	        }
-	        return this.userPicto;
-	    }
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "user_pictograms", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "pictogram_id"))
+//	private Set<Pictogram> userPicto;
+//	
+//	
+//	public Set<Pictogram> getUserPicto() {
+//		return userPicto;
+//	}
+//
+//
+//	
+//	protected Set<Pictogram> getPictogramInternal() {
+//	        if (this.userPicto == null) {
+//	            this.userPicto = new HashSet<>();
+//	        }
+//	        return this.userPicto;
+//	    }
 
 
 	public String getFirstName() {
