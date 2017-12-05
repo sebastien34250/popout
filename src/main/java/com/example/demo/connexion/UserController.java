@@ -64,7 +64,6 @@ public class UserController {
     public ModelAndView showUser(@PathVariable("user_id") int user_id) {
         ModelAndView mav = new ModelAndView("user/readmember"); 
         User user = this.users.findOne(user_id);
-        System.out.println(user.getFirstName());
         mav.addObject(user);
         return mav;
     }
