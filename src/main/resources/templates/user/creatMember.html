@@ -13,8 +13,8 @@
 <meta name="description" content="Creatio d'un nouveau membre"></meta>
 </head>
 <body>
-<form class="form-inline" method="get"
-						action="">
+<form class="form-inline" method="post"
+						action="/creatMember" th:object="${user}">
 	<br></br>
 	<div class="p-1">
 		<div class="container">
@@ -22,7 +22,7 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label text-left">Pseudo :</label> <input
-							type="text" name="Pseudo" class="form-control ml-auto w-50"
+							type="text" class="form-control ml-auto w-50" th:field="*{pseudo}"
 							placeholder="Pseudo"></input>
 					
 				</div>
@@ -35,7 +35,7 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Nom :</label> <input type="text"
-							name="Nom" class="form-control ml-auto w-50" placeholder="Nom"></input>
+							 class="form-control ml-auto w-50" placeholder="Nom" th:field="*{lastName}"></input>
 					
 				</div>
 			</div>
@@ -47,8 +47,8 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Prenom :</label> <input
-							type="text" name="Prenom" class="form-control ml-auto w-50"
-							placeholder="Prenom"></input>
+							type="text"  class="form-control ml-auto w-50"
+							placeholder="Prenom" th:field="*{firstName}"></input>
 					
 				</div>
 			</div>
@@ -60,8 +60,8 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Email :</label> <input
-							type="email" name="email" class="form-control ml-auto w-50"
-							placeholder="Email"></input>
+							type="email"  class="form-control ml-auto w-50"
+							placeholder="Email" th:field="*{email}"></input>
 					
 				</div>
 			</div>
@@ -73,8 +73,8 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Mot de passe :</label> <input
-							type="password" name="Password" class="form-control ml-auto w-50"
-							placeholder="Mot de passe"></input>
+							type="password"  class="form-control ml-auto w-50"
+							placeholder="Mot de passe" th:field="*{password}"></input>
 					
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Confirmation du mot de
-							passe :</label> <input type="password" name="ConfirmationPassword"
+							passe :</label> <input type="password" 
 							class="form-control ml-auto w-50" placeholder="Mot de passe"></input>
 					
 				</div>
@@ -99,8 +99,8 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Age :</label> <input
-							type="number" name="Age" class="form-control ml-auto w-50"
-							placeholder="Age"></input>
+							type="number"  class="form-control ml-auto w-50"
+							placeholder="Age" th:field="*{age}"></input>
 					
 				</div>
 			</div>
@@ -112,8 +112,8 @@
 				<div class="col-md-12">
 					
 						<label class="form-control-label">Ville :</label> <input
-							type="text" name="Ville" class="form-control ml-auto w-50"
-							placeholder="Ville"></input>
+							type="text"  class="form-control ml-auto w-50"
+							placeholder="Ville" th:field="*{city}"></input>
 					
 				</div>
 			</div>
@@ -165,7 +165,7 @@
 					<fieldset class="FieldSetBio">
 						<legend class="legend">Description</legend>
 						<textarea class="biographie"
-							style="margin-top: 0px; margin-bottom: 0px; height: 108px;" name="bioLight"></textarea>
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;" th:field="*{bioLight}"></textarea>
 					</fieldset>
 				</div>
 			</div>
@@ -175,7 +175,7 @@
 					<fieldset class="FieldSetBio">
 						<legend class="legend">Biographie</legend>
 						<textarea class="biographie"
-							style="margin-top: 0px; margin-bottom: 0px; height: 108px;" name="bio"></textarea>
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;" th:field="*{bio}"></textarea>
 					</fieldset>
 				</div>
 			</div>
