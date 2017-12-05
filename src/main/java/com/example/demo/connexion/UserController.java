@@ -1,6 +1,7 @@
 package com.example.demo.connexion;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,11 +49,14 @@ public class UserController {
     }
     
     @PostMapping("/creatMember")
-    public String processCreationForm(@Valid User user, BindingResult result) {
+    public String processCreationForm(@Valid User user, BindingResult result, @PathVariable("picto") int pictogram_id) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
+        	HashSet<Pictogram> userPicto = new HashSet<Pictogram>();
+        	userPicto.add(this.pictos.findOne(pictogram_id));
             this.users.save(user);
+            user.setUserPicto(userPicto);
             return "redirect:/readmember/" + user.getId();
         }
     }

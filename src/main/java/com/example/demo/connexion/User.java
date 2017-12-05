@@ -31,18 +31,23 @@ import javax.persistence.ManyToMany;
 
 public class User {
 	@Column(name = "firstname")
+	@NotEmpty
 	private String firstName;
 	
 	@Column(name = "lastname")
+	@NotEmpty
 	private String lastName;
 	
 	@Column(name = "pseudo")
+	@NotEmpty
 	private String pseudo;
 	
 	@Column(name = "email")
+	@NotEmpty
 	private String email;
 	
 	@Column(name = "user_password")
+	@NotEmpty
 	private String password;
 	
 	@Column(name = "city")
