@@ -93,17 +93,13 @@
 							d'intêrets</label>
 						<div class="row ">
 							<div class="col-md-3" th:each="picto, stat : ${pictos}">
-								<img class="img-circle" th:src="'resources/img/'+${picto.path}"></img>
+								<img class="img-circle" th:src="'/resources/img/'+${picto.path}"></img>
 								<input id="checkBox" type="checkbox"
 									th:field="*{userPicto[__${stat.index}__]}"
 									th:value="${picto.id}" class="w-100 mx-5"></input> <br></br>
 							</div>
 						</div>
 					</div>
-
-
-
-
 					<button id="button" type="submit" class="btn btn-lg btn-primary">
 						Valider</button>
 				</form>
