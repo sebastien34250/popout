@@ -7,6 +7,7 @@ body {
 	height: 50px;
 	width: 50px;
 	background-color: white;
+	
 }
 
 .img-responsive {
@@ -31,7 +32,6 @@ h3 {
 
 .btn {
 	margin-bottom: 10px;
-	
 	border: 2px solid #7fdeff;
 	background: #2c2a4a;
 	color: #fff;
@@ -70,4 +70,7 @@ ul{
 }
 #second{
 	margin-top: 20px;
+}
+body{
+	color: white;
 }

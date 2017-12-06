@@ -12,3 +12,10 @@
 #avatar{
 	background-color: rgba(0, 0, 0, 0);
 }
+.img-circle {
+	border: 2px solid #7fdeff;
+	height: 50px;
+	width: 50px;
+	background-color: white;
+	border-radius: 50%;
+}

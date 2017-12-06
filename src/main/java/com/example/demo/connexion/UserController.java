@@ -20,11 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 	
-	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/creatMember";
+	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/createUpdateUserForm";
     private final UserRepository users;
     private final PictoRepository pictos;
     private  String imgPath = "/resources/static/resources/img";
-    
+    private String modif;
 
 
     @Autowired
@@ -32,8 +32,6 @@ public class UserController {
         this.users = UserService;
         this.pictos = PictoService;
     }
-    
-   
     
     @GetMapping("/")
     public String index() {
@@ -43,6 +41,8 @@ public class UserController {
     @GetMapping("/creatMember")
     public String initCreationForm(Map<String, Object> model) {
         User user = new User();
+        modif = "create";
+        model.put("modif", modif);
         Iterable<Pictogram> pictos = this.pictos.findAll();
         model.put("user", user);
         model.put("pictos", pictos);
@@ -70,9 +70,13 @@ public class UserController {
     
     @GetMapping("/modifyMember/{user_id}")
     public ModelAndView updateUser(@PathVariable("user_id") int user_id) {
-        ModelAndView mav = new ModelAndView("user/modifyMember");
+        ModelAndView mav = new ModelAndView("user/createUpdateUserForm");
+        modif = "update";
+        mav.addObject(modif);
         User user = this.users.findOne(user_id);
         mav.addObject(user);
+        Iterable<Pictogram> pictos = this.pictos.findAll();
+        mav.addObject("pictos", pictos);
         return mav;
     }
     
@@ -93,6 +97,4 @@ public class UserController {
     	return "redirect:/connection";
     }
      
-    
-
 }

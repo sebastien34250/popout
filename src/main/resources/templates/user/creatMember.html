@@ -120,15 +120,14 @@
 				</div>
 				<br></br> <br></br>
 
-				<div class="row border border-dark">
+				<div class="row ">
 					<div class="col-md-3" th:each="picto, stat : ${pictos}">
-						<img class="img-fluid d-block w-25 mx-auto py-2 rounded-circle"
+						<img class="img-circle"
 							th:src="'resources/img/'+${picto.path}"></img> <input
 							id="checkBox" type="checkbox"
 							th:field="*{userPicto[__${stat.index}__]}" th:value="${picto.id}"
 							class="w-100 mx-5"></input> <br></br>
 					</div>
-
 				</div>
 				<div class="row">
 					<div class="col-md-12  margin-bio">
@@ -157,11 +156,11 @@
 		<div class="p-0">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4"></div>
+					
 					<div class="col-md-4 text-center">
 						<button type="submit" class="btn btn-default">Find Author</button>
 					</div>
-					<div class="col-md-4"></div>
+				
 				</div>
 			</div>
 		</div>
