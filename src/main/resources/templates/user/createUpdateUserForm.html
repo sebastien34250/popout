@@ -15,13 +15,7 @@
 	<div class="container-fluid" id="blueBorder">
 		<div class="row">
 			<div class="col-md-12">
-				<form role="form" th:object="${user}" method="post"
-					action="/creatMember">
-
-
-					<div th:if="${modif} == 'create'">Create</div>
-
-					<div th:unless="${modif} == 'create'">Update</div>
+				<form role="form" th:object="${user}" method="post">
 
 
 					<div class="form-group">
@@ -94,9 +88,6 @@
 							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"
 							th:field="*{bio}"></textarea>
 					</div>
-
-
-
 					<div class="form-group">
 						<label class="form-control-label">Choisissez vos centres
 							d'intêrets</label>
