@@ -96,5 +96,12 @@ public class UserController {
     	this.users.delete(user_id);
     	return "redirect:/connection";
     }
+    
+    @GetMapping("/listMembers")
+    public String listAllMembers(Map<String, Object> model) {
+    	ArrayList<User> userList = new ArrayList<User>();
+    	model.put("userList", userList);
+    	return "redirect:/listMembers";
+    }
      
 }
