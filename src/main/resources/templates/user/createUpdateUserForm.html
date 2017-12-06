@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Create user</title>
+<link rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" href="/resources/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="/resources/css/createUpdateUserForm.css"></link>
+<script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/scripts.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid" id="blueBorder">
+		<div class="row">
+			<div class="col-md-12">
+				<form role="form" th:object="${user}" method="post"
+					action="/creatMember">
+
+
+					<div th:if="${modif} == 'create'">Create</div>
+
+					<div th:unless="${modif} == 'create'">Update</div>
+
+
+					<div class="form-group">
+
+						<label for="exampleInputEmail1"> Pseudo </label> <input
+							type="text" class="form-control" th:field="*{pseudo}"
+							id="exampleInputEmail1" />
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputEmail1"> Nom </label> <input type="text"
+							class="form-control" id="exampleInputEmail1"
+							th:field="*{lastName}" />
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputEmail1"> Prénom </label> <input
+							type="text" class="form-control" id="exampleInputEmail1"
+							th:field="*{firstName}" />
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputEmail1"> Email </label> <input
+							type="email" class="form-control" id="exampleInputEmail1"
+							th:field="*{email}" />
+					</div>
+
+					<div class="form-group">
+
+						<label for="exampleInputPassword1"> Mot de passe </label> <input
+							type="password" class="form-control" th:field="*{password}"
+							id="exampleInputPassword1" />
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputPassword1"> Confirmation du mot de
+							passe </label> <input type="password" th:field="*{password}"
+							class="form-control" id="exampleInputPassword1" />
+					</div>
+
+
+					<div class="form-group">
+
+						<label class="form-control-label">Age </label> <input
+							type="number" min="1" max="100" class="form-control ml-auto w-50"
+							th:field="*{age}"></input>
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputEmail1"> Ville </label> <input type="text"
+							class="form-control" id="exampleInputEmail1" th:field="*{city}" />
+					</div>
+					<div class="form-group">
+
+						<label for="exampleInputFile"> Avatar </label> <input type="file"
+							th:field="*{photoName}" id="exampleInputFile" />
+
+					</div>
+					<div class="form-group">
+
+						<label class="form-control-label">Description</label>
+						<textarea class="biographie"
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"
+							th:field="*{bioLight}"></textarea>
+					</div>
+					<div class="form-group">
+
+						<label class="form-control-label">Biographie</label>
+						<textarea class="biographie"
+							style="margin-top: 0px; margin-bottom: 0px; height: 108px;"
+							th:field="*{bio}"></textarea>
+					</div>
+
+
+
+					<div class="form-group">
+						<label class="form-control-label">Choisissez vos centres
+							d'intêrets</label>
+						<div class="row ">
+							<div class="col-md-3" th:each="picto, stat : ${pictos}">
+								<img class="img-circle" th:src="'resources/img/'+${picto.path}"></img>
+								<input id="checkBox" type="checkbox"
+									th:field="*{userPicto[__${stat.index}__]}"
+									th:value="${picto.id}" class="w-100 mx-5"></input> <br></br>
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<button id="button" type="submit" class="btn btn-lg btn-primary">
+						Valider</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
