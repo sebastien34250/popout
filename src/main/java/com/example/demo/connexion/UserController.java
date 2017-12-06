@@ -100,8 +100,9 @@ public class UserController {
     @GetMapping("/listMembers")
     public String listAllMembers(Map<String, Object> model) {
     	ArrayList<User> userList = new ArrayList<User>();
+    	userList = (ArrayList<User>) this.users.findAll();
     	model.put("userList", userList);
-    	return "redirect:/listMembers";
+    	return "/user/listMembers";
     }
      
 }
