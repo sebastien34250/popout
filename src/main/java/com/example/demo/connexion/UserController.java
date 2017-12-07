@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.demo.connexion;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 @Controller
 public class UserController {
 
@@ -24,6 +24,9 @@ public class UserController {
 	private final PictoRepository pictos;
 	private String imgPath = "/resources/static/resources/img";
 	private String modif;
+	private String emailForm="getrgd";
+	private String passwordForm="drgdrgdr";
+	
 
 	@Autowired
 	public UserController(UserRepository UserService, PictoRepository PictoService) {
@@ -36,12 +39,27 @@ public class UserController {
 		return "index";
 	}
 
+	@GetMapping("/connexion")
+	public String connexion(Map<String, Object> model) {
+		model.put("emailForm", emailForm);
+		model.put("passwordForm", passwordForm);
+		return "connexion";
+	}
+
+//	@GetMapping("email={email}&password={password}")
+//	public String connexionDB(@PathVariable("email") String email, @PathVariable("password") String password) {
+//		System.out.println(email + password);
+//		User user = users.findByMail(email, password);
+//		
+//		return "redirect:/readmember/" + user.getId();
+//	}
+
 	@GetMapping("/creatMember")
 	public String initCreationForm(Map<String, Object> model) {
 		User user = new User();
 		modif = "create";
 		model.put("modif", modif);
-		Iterable<Pictogram> pictos = this.pictos.findAll();
+		ArrayList<Pictogram> pictos = (ArrayList<Pictogram>) this.pictos.findAll();
 		model.put("user", user);
 		model.put("pictos", pictos);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
@@ -49,23 +67,11 @@ public class UserController {
 
 	@PostMapping("/creatMember")
 	public String processCreationForm(@Valid User user, BindingResult result) {
-		int errorType = 0;
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		} else {
-			if (this.users.controlPseudo(user.getPseudo()).size() != 0) {
-				errorType = 1;
-			}
-			if (this.users.controlEmail(user.getEmail()).size() != 0) {
-				errorType = 2;
-			}
-
-			if (errorType == 0) {
-				this.users.save(user);
-				return "redirect:/readmember/" + user.getId();
-			} else {
-				return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-			}
+			this.users.save(user);
+			return "redirect:/readmember/" + user.getId();
 		}
 	}
 
@@ -84,30 +90,19 @@ public class UserController {
 		mav.addObject(modif);
 		User user = this.users.findOne(user_id);
 		mav.addObject(user);
-		Iterable<Pictogram> pictos = this.pictos.findAll();
+		ArrayList<Pictogram> pictos = (ArrayList<Pictogram>) this.pictos.findAll();
 		mav.addObject("pictos", pictos);
 		return mav;
 	}
 
 	@PostMapping("/modifyMember/{user_id}")
 	public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
-		int errorType = 0;
 		if (result.hasErrors()) {
 			return "/modifyMember/{user_id}";
 		} else {
-			if (this.users.controlPseudo(user.getPseudo()).size() != 0) {
-				errorType = 1;
-			}
-			if (this.users.controlEmail(user.getEmail()).size() != 0) {
-				errorType = 2;
-			}
-			if (errorType == 0) {
-				user.setId(user_id);
-				this.users.save(user);
-				return "redirect:/readmember/{user_id}";
-			} else {
-				return "redirect:/modifyMember/{user_id}";
-			}
+			user.setId(user_id);
+			this.users.save(user);
+			return "redirect:/readmember/{user_id}";
 		}
 	}
 
@@ -126,3 +121,4 @@ public class UserController {
 	}
 
 }
+>>>>>>> 467924d26a063eb25188f4e52b5bf582fc47009c
