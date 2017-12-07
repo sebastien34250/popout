@@ -12,10 +12,6 @@ public class Connexion {
 	        return "index";
 	    }*/
 	 
-	  @GetMapping("/connexion")
-	    public String connexion() {
-	        return "connexion";
-	    }
 	  
 	  /*@GetMapping("/readmember")
 	    public String readmember() {

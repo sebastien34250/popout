@@ -14,5 +14,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT DISTINCT user FROM User user WHERE lastname LIKE :lastname%")
 	@Transactional(readOnly = true)
 	Collection<User> findByLastName(@Param("lastname") String lastName);
+
+	@Query("SELECT DISTINCT user FROM User user WHERE email LIKE :email% and password LIKE :mdp")
+	@Transactional(readOnly = true)
+	User findByMail(@Param("email") String email, @Param("mdp") String mdp);
 	
 }
