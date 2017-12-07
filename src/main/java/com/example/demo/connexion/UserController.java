@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.example.demo.connexion;
 
 import java.util.ArrayList;
@@ -67,11 +66,24 @@ public class UserController {
 
 	@PostMapping("/creatMember")
 	public String processCreationForm(@Valid User user, BindingResult result) {
+		int errorType = 0;
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		} else {
-			this.users.save(user);
-			return "redirect:/readmember/" + user.getId();
+			if (this.users.controlPseudo(user.getPseudo()).size() != 0) {
+				errorType = 1;
+			}
+			
+			if (this.users.controlEmail(user.getEmail()).size() != 0) {
+				errorType = 2;
+			}
+			
+			if (errorType == 0) {
+				this.users.save(user);
+				return "redirect:/readmember/{user_id}";
+			} else {
+				return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+			}
 		}
 	}
 
@@ -97,12 +109,26 @@ public class UserController {
 
 	@PostMapping("/modifyMember/{user_id}")
 	public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
+		int errorType = 0;
 		if (result.hasErrors()) {
 			return "/modifyMember/{user_id}";
 		} else {
-			user.setId(user_id);
-			this.users.save(user);
-			return "redirect:/readmember/{user_id}";
+			if (this.users.controlPseudo(user.getPseudo()).size() != 0) {
+				errorType = 1;
+			}
+			
+			if (this.users.controlEmail(user.getEmail()).size() != 0) {
+				errorType = 2;
+			}
+			
+			if (errorType == 0) {
+				user.setId(user_id);
+				this.users.save(user);
+				return "redirect:/readmember/{user_id}";
+			} else {
+				return "redirect:/modifyMember/{user_id}";
+			}
+			
 		}
 	}
 
@@ -121,4 +147,4 @@ public class UserController {
 	}
 
 }
->>>>>>> 467924d26a063eb25188f4e52b5bf582fc47009c
+
