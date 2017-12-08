@@ -1,13 +1,13 @@
-var password = document.getElementById(exampleInputPassword1);
-var passwordConf = document.getElementById(exampleInputPassword2);
+var password = document.getElementById("exampleInputPassword1");
+var passwordConf = document.getElementById("exampleInputPassword2");
 
 function validatePassword() { 
-	if (password.value != passwordConf.value) {
-		passwordConf.setCustomValidity("Pas de correspondance");
+	if (password.value == passwordConf.value) {
+		
 	} else {
-		passwordConf.setCustomValidity('');
+		alert("Mots de passe différents");
 	}
 }
 
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+
+passwordConf.onfocusout = validatePassword;

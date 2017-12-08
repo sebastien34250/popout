@@ -129,9 +129,9 @@ public class UserController {
 			if (errorType == 0) {
 				user.setId(user_id);
 				this.users.save(user);
-				return "redirect:/readmember/{user_id}";
+				return "redirect:/readmember/" + user.getId();
 			} else {
-				return "redirect:/modifyMember/{user_id}";
+				return "redirect:/modifyMember/" + user.getId();
 			}
 			
 		}
