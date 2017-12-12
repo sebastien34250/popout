@@ -66,25 +66,16 @@ public class UserController {
 
 	@PostMapping("/creatMember")
 	public String processCreationForm(@Valid User user, BindingResult result) {
-		int errorType = 0;
+		if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
+		if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
 		if (result.hasErrors()) {
-			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+			return "redirect:/creatMember";
 		} else {
-			if (this.users.controlPseudo(user.getPseudo()).size() != 0) {
-				errorType = 1;
-			}
 			
-			if (this.users.controlEmail(user.getEmail()).size() != 0) {
-				errorType = 2;
-			}
-			
-			if (errorType == 0) {
 				this.users.save(user);
 				
 				return "redirect:/readmember/" + user.getId();
-			} else {
-				return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-			}
+			
 		}
 	}
 
@@ -110,29 +101,15 @@ public class UserController {
 
 	@PostMapping("/modifyMember/{user_id}")
 	public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
-		int errorType = 0;
-		String newPseudo = user.getPseudo();
-		String pseudo = this.users.getOne(user_id).getPseudo();
-		String newEmail = user.getEmail();
-		String Email = this.users.getOne(user_id).getEmail();
+		if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
+		if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
 		if (result.hasErrors()) {
-			return "/modifyMember/{user_id}";
+			return "/modifyMember/"+ user_id;
 		} else {
-			if (pseudo.equals(newPseudo) == false  && this.users.controlPseudo(newPseudo).size() != 0) {
-				errorType = 1;
-			}
 			
-			if (Email.equals(newEmail) == false && this.users.controlEmail(newEmail).size() != 0) {
-				errorType = 2;
-			}
-			
-			if (errorType == 0) {
 				user.setId(user_id);
 				this.users.save(user);
 				return "redirect:/readmember/" + user.getId();
-			} else {
-				return "redirect:/modifyMember/" + user.getId();
-			}
 			
 		}
 	}
