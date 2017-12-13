@@ -1,0 +1,9 @@
+diff a/src/main/java/com/example/demo/connexion/UserController.java b/src/main/java/com/example/demo/connexion/UserController.java	(rejected hunks)
+@@ -66,7 +66,6 @@
+ 
+ 	@PostMapping("/creatMember")
+ 	public String processCreationForm(@Valid User user, BindingResult result) {
+-		int errorType = 0;
+ 		if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
+ 		if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
+ 		if (result.hasErrors()) {
