@@ -101,8 +101,18 @@ public class UserController {
 
 	@PostMapping("/modifyMember/{user_id}")
 	public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
-		if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
-		if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
+		String newPseudo = user.getPseudo();
+		String newEmail = user.getEmail();
+		
+		if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
+			if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
+		}
+		
+		if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
+			if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
+		}
+		
+		
 		if (result.hasErrors()) {
 			return "/modifyMember/"+ user_id;
 		} else {
