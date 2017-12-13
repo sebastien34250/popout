@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 @Controller
+	@PostMapping("/creatMember")
+@Controller
 public class UserController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "/user/createUpdateUserForm";
@@ -112,6 +114,8 @@ public class UserController {
 			if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
 		}
 		
+		if (result.hasErrors()) {
+			return "/modifyMember/"+ user_id;
 		
 		if (result.hasErrors()) {
 			return "/modifyMember/"+ user_id;
