@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Event</title>
+</head>
+<body>
+	<div id="Middle" style="display: flex; flex-direction: column">
+		<div id="MiddleUp" style="display: flex">
+			<div id="MiddleUpLeft">
+				<img id="avatar" th:src="">
+			</div>
+			<div id="MiddleUpCenter" style="flex: 1">
+				<div id="MiddleUpCenterUp">
+					<div id="MiddleUpCenterUpLeft">
+						<img id="picto1" th:src=""> <img id="picto2" th:src=""> <img id="picto3" th:src="">
+						<img id="picto4" th:src="">
+					</div>
+					<div id="MiddleUpCenterUpRight" style="border-style: solid">
+						${event.title}</div>
+				</div>
+				<div id="MiddleUpCenterDown">
+					<div id="MiddleUpCenterDownLeft" style="border-style: solid">
+						${event.bio_light}</div>
+					<div id="MiddleUpCenterDownRight"></div>
+				</div>
+			</div>
+			<div id="MiddleUpRight" style="border-style: solid">
+				Inscrits<br> nb/nbMax<table><tr><td>user 1</td></tr><tr><td>user 2</td></tr></table>
+			</div>
+		</div>
+
+		<div id="MiddleMiddle" style="display: flex">
+			<div id="MiddleMiddleLeft" style="border-style: solid; flex: 1">
+				${event.bio}</div>
+			<div id="MiddleMiddleRight">
+				<input type="button" value="Modifier"><br> <input
+					type="button" value="Participer"><br> <input
+					type="button" value="Ne Plus Participer">
+			</div>
+		</div>
+
+		<div id="MiddleDown" style="border-style: solid">Commentaire 1</div>
+	</div>
+</body>
+</html>
