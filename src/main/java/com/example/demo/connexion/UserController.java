@@ -44,12 +44,14 @@ public class UserController {
 	}
 
 	@PostMapping("/connexion")
-	 public String connexionDB(@Valid User user, BindingResult result) {
-	 System.out.println(user.getEmail()+ user.getPassword());
-	 //user = users.findByMail(user.getEmail(), user.getPassword());
-	
-	 return "redirect:/readmember/" + user.getId();
-	 }
+	public String connexionDB(@Valid User user, BindingResult result) {
+		User userConnect = users.findByMail(user.getEmail());
+		if (userConnect.getPassword().equals(user.getPassword()) ) {
+			return "redirect:/readmember/" + userConnect.getId();
+		} else {
+			return "connexion";
+		}
+	}
 
 	@GetMapping("/creatMember")
 	public String initCreationForm(Map<String, Object> model) {
@@ -64,24 +66,25 @@ public class UserController {
 
 	@PostMapping("/creatMember")
 	public String processCreationForm(@Valid User user, BindingResult result) {
-		if (this.users.controlEmail(user.getEmail()).size() != 0)
-			result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
-		if (this.users.controlPseudo(user.getPseudo()).size() != 0)
-			result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
-		if (result.hasErrors()) {
-			return "redirect:/creatMember";
-		} else {
+		// if (this.users.controlEmail(user.getEmail()).size() != 0)
+		// result.rejectValue("email", "email.errors", user.getEmail() + " is already
+		// taken");
+		// if (this.users.controlPseudo(user.getPseudo()).size() != 0)
+		// result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already
+		// taken");
+		// if (result.hasErrors()) {
+		// return "redirect:/creatMember";
+		// } else {
 
-			try {
-				this.users.save(user);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+		try {
+			this.users.save(user);
 			return "redirect:/readmember/" + user.getId();
-
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/creatMember";
 		}
+
 	}
 
 	@GetMapping("/readmember/{user_id}")
@@ -109,15 +112,15 @@ public class UserController {
 		String newPseudo = user.getPseudo();
 		String newEmail = user.getEmail();
 
-		if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
-			if (this.users.controlPseudo(user.getPseudo()).size() != 0)
-				result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
-		}
-
-		if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
-			if (this.users.controlEmail(user.getEmail()).size() != 0)
-				result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
-		}
+//		if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
+//			if (this.users.controlPseudo(user.getPseudo()).size() != 0)
+//				result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
+//		}
+//
+//		if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
+//			if (this.users.controlEmail(user.getEmail()).size() != 0)
+//				result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
+//		}
 
 		if (result.hasErrors()) {
 			return "/modifyMember/" + user_id;
