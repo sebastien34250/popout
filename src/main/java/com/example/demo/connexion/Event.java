@@ -34,7 +34,7 @@ public class Event {
 	private String city;
 	
 	@Column(name="master_id")
-	private User master_id;
+	private int master_id;
 	
 	@Column(name="start_time")
 	private String start_time;
@@ -96,11 +96,11 @@ public class Event {
 		this.city = city;
 	}
 
-	public User getMaster_id() {
+	public int getMaster_id() {
 		return master_id;
 	}
 
-	public void setMaster_id(User master_id) {
+	public void setMaster_id(int master_id) {
 		this.master_id = master_id;
 	}
 
