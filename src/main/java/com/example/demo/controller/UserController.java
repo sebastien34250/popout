@@ -1,4 +1,4 @@
-package com.example.demo.connexion;
+package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.model.Pictogram;
+import com.example.demo.model.User;
+import com.example.demo.repository.PictoRepository;
+import com.example.demo.repository.UserRepository;
 
 @Controller
 public class UserController {
@@ -36,6 +41,11 @@ public class UserController {
 		return "index";
 	}
 
+	@GetMapping("/template")
+	public String template() {
+		return "template";
+	}
+
 	@GetMapping("/connexion")
 	public String connexion(Map<String, Object> model) {
 		User user = new User();
@@ -46,7 +56,7 @@ public class UserController {
 	@PostMapping("/connexion")
 	public String connexionDB(@Valid User user, BindingResult result) {
 		User userConnect = users.findByMail(user.getEmail());
-		if (userConnect.getPassword().equals(user.getPassword()) ) {
+		if (userConnect.getPassword().equals(user.getPassword())) {
 			return "redirect:/readmember/" + userConnect.getId();
 		} else {
 			return "connexion";
@@ -112,15 +122,17 @@ public class UserController {
 		String newPseudo = user.getPseudo();
 		String newEmail = user.getEmail();
 
-//		if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
-//			if (this.users.controlPseudo(user.getPseudo()).size() != 0)
-//				result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
-//		}
-//
-//		if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
-//			if (this.users.controlEmail(user.getEmail()).size() != 0)
-//				result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
-//		}
+		// if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
+		// if (this.users.controlPseudo(user.getPseudo()).size() != 0)
+		// result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already
+		// taken");
+		// }
+		//
+		// if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
+		// if (this.users.controlEmail(user.getEmail()).size() != 0)
+		// result.rejectValue("email", "email.errors", user.getEmail() + " is already
+		// taken");
+		// }
 
 		if (result.hasErrors()) {
 			return "/modifyMember/" + user_id;

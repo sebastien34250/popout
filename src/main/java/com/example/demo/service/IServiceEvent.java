@@ -1,6 +1,8 @@
-package com.example.demo.connexion;
+package com.example.demo.service;
 
 import java.util.ArrayList;
+
+import com.example.demo.model.Event;
 
 public interface IServiceEvent {
 

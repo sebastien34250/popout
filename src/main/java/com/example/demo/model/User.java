@@ -1,4 +1,4 @@
-package com.example.demo.connexion;
+package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

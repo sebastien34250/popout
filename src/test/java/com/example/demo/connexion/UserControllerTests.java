@@ -18,6 +18,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.demo.controller.UserController;
+import com.example.demo.repository.PictoRepository;
+import com.example.demo.repository.UserRepository;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
 public class UserControllerTests {
