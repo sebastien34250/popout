@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 @Controller
 public class UserController {
 
@@ -23,9 +24,6 @@ public class UserController {
 	private final PictoRepository pictos;
 	private String imgPath = "/resources/static/resources/img";
 	private String modif;
-	private String emailForm="getrgd";
-	private String passwordForm="drgdrgdr";
-	
 
 	@Autowired
 	public UserController(UserRepository UserService, PictoRepository PictoService) {
@@ -40,18 +38,18 @@ public class UserController {
 
 	@GetMapping("/connexion")
 	public String connexion(Map<String, Object> model) {
-		model.put("emailForm", emailForm);
-		model.put("passwordForm", passwordForm);
+		User user = new User();
+		model.put("user", user);
 		return "connexion";
 	}
 
-//	@GetMapping("email={email}&password={password}")
-//	public String connexionDB(@PathVariable("email") String email, @PathVariable("password") String password) {
-//		System.out.println(email + password);
-//		User user = users.findByMail(email, password);
-//		
-//		return "redirect:/readmember/" + user.getId();
-//	}
+	@PostMapping("/connexion")
+	 public String connexionDB(@Valid User user, BindingResult result) {
+	 System.out.println(user.getEmail()+ user.getPassword());
+	 //user = users.findByMail(user.getEmail(), user.getPassword());
+	
+	 return "redirect:/readmember/" + user.getId();
+	 }
 
 	@GetMapping("/creatMember")
 	public String initCreationForm(Map<String, Object> model) {
@@ -66,16 +64,23 @@ public class UserController {
 
 	@PostMapping("/creatMember")
 	public String processCreationForm(@Valid User user, BindingResult result) {
-		if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
-		if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
+		if (this.users.controlEmail(user.getEmail()).size() != 0)
+			result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
+		if (this.users.controlPseudo(user.getPseudo()).size() != 0)
+			result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
 		if (result.hasErrors()) {
 			return "redirect:/creatMember";
 		} else {
-			
+
+			try {
 				this.users.save(user);
-				
-				return "redirect:/readmember/" + user.getId();
-			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return "redirect:/readmember/" + user.getId();
+
 		}
 	}
 
@@ -103,24 +108,25 @@ public class UserController {
 	public String processUpdateForm(@Valid User user, BindingResult result, @PathVariable("user_id") int user_id) {
 		String newPseudo = user.getPseudo();
 		String newEmail = user.getEmail();
-		
+
 		if (newPseudo.equals(this.users.getOne(user_id).getPseudo()) == false) {
-			if(this.users.controlPseudo(user.getPseudo()).size() != 0) result.rejectValue("pseudo", "pseudo.errors", user.getPseudo()+" is already taken");
+			if (this.users.controlPseudo(user.getPseudo()).size() != 0)
+				result.rejectValue("pseudo", "pseudo.errors", user.getPseudo() + " is already taken");
 		}
-		
+
 		if (newEmail.equals(this.users.getOne(user_id).getEmail()) == false) {
-			if(this.users.controlEmail(user.getEmail()).size() != 0) result.rejectValue("email", "email.errors", user.getEmail()+" is already taken");
+			if (this.users.controlEmail(user.getEmail()).size() != 0)
+				result.rejectValue("email", "email.errors", user.getEmail() + " is already taken");
 		}
-		
-		
+
 		if (result.hasErrors()) {
-			return "/modifyMember/"+ user_id;
+			return "/modifyMember/" + user_id;
 		} else {
-			
-				user.setId(user_id);
-				this.users.save(user);
-				return "redirect:/readmember/" + user.getId();
-			
+
+			user.setId(user_id);
+			this.users.save(user);
+			return "redirect:/readmember/" + user.getId();
+
 		}
 	}
 
@@ -139,4 +145,3 @@ public class UserController {
 	}
 
 }
-

@@ -31,23 +31,23 @@ import javax.persistence.ManyToMany;
 
 public class User {
 	@Column(name = "firstname")
-	@NotEmpty
+//	@NotEmpty
 	private String firstName;
 	
 	@Column(name = "lastname")
-	@NotEmpty
+//	@NotEmpty
 	private String lastName;
 	
 	@Column(name = "pseudo")
-	@NotEmpty
+//	@NotEmpty
 	private String pseudo;
 	
 	@Column(name = "email")
-	@NotEmpty
+//	@NotEmpty
 	private String email;
 	
 	@Column(name = "user_password")
-	@NotEmpty
+//	@NotEmpty
 	private String password;
 	
 	@Column(name = "city")

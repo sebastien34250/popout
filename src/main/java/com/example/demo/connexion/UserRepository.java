@@ -26,6 +26,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT DISTINCT user FROM User user WHERE email = :email")
 	@Transactional(readOnly = true)
 	Collection<User> controlEmail(@Param("email") String email);
+
+	//User findByMail(String email, String password);
 	
 }
 
